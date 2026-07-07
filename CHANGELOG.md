@@ -2,6 +2,14 @@
 
 All notable changes to `/watch` are documented here.
 
+## [0.2.2] — 2026-07-07
+
+### Added
+- **Auto-written `TRANSCRIPT.md`** in the work dir on every run — a paragraph-grouped (~30s buckets) Markdown transcript that reads as prose instead of a wall of two-second cues. The report prints its path. (Upstream PR by @adamharveyai, cherry-picked into this fork; works with the local faster-whisper backend too.)
+
+### Fixed
+- **Rolling-caption overlap in `transcribe._dedupe`.** YouTube's rolling two-line cues overlapped by the previous "current" line, leaking heavy duplication into the report. A new `_strip_overlap` helper trims the shared prev-suffix / curr-prefix so each segment carries only new content. (No-op for Whisper output, which has no overlap.)
+
 ## [0.2.1] — 2026-07-06
 
 ### Added
